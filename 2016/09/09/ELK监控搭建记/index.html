@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo," />
+  <meta name="keywords" content="Elasticsearch,Logstash,Kibana," />
 
 
 
@@ -84,33 +84,19 @@
 
 
 
-<meta name="description" content="总结网上的使用github+hexo搭建blog时的步奏和踩到的那些坑,力求全面阐述搭建过程和简单介绍hexo发布这篇博客的过程为后来者节省时间.
-
-预备准备一枚免费域名免费顶级域名我们可以去Freenom申请,申请之后进入管理页面如下图进入nameservers管理界面更改dns解析服务器,该解析服务器dnspod官方的,注册后可以进入域名解析界面查询
-设置一个域名解析访问dnspod的网站注">
+<meta name="description" content="ELK是什么?elastic官网elasticsearch权威指南先大致介绍ELK组件。ELK是Elasticsearch、Logstash、Kibana的简称，这三者是核心套件，但并非全部。后文的四种基本架构中将逐一介绍应用到的其它套件。现在
+部署架构框架部署步奏Elasticsearch安装及配置Logstash安装及配置Kibana安装及配置Topbeat解析配置程序监控Api">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo搭建记">
-<meta property="og:url" content="http://niumugaung.tk/2016/09/06/Hexo搭建记/index.html">
+<meta property="og:title" content="ELK监控搭建记">
+<meta property="og:url" content="http://niumugaung.tk/2016/09/09/ELK监控搭建记/index.html">
 <meta property="og:site_name" content="Lio's Notebook">
-<meta property="og:description" content="总结网上的使用github+hexo搭建blog时的步奏和踩到的那些坑,力求全面阐述搭建过程和简单介绍hexo发布这篇博客的过程为后来者节省时间.
-
-预备准备一枚免费域名免费顶级域名我们可以去Freenom申请,申请之后进入管理页面如下图进入nameservers管理界面更改dns解析服务器,该解析服务器dnspod官方的,注册后可以进入域名解析界面查询
-设置一个域名解析访问dnspod的网站注">
-<meta property="og:image" content="http://ocux2a0n2.bkt.clouddn.com/address.png">
-<meta property="og:image" content="http://ocux2a0n2.bkt.clouddn.com/2016-9-2%2013-12-06.png">
-<meta property="og:image" content="http://ocux2a0n2.bkt.clouddn.com/2016-9-2%2013-16-01.png">
-<meta property="og:image" content="http://ocux2a0n2.bkt.clouddn.com/2016-9-2%2014-28-52.png">
-<meta property="og:image" content="http://ocux2a0n2.bkt.clouddn.com/githubresname.png">
-<meta property="og:image" content="http://ocux2a0n2.bkt.clouddn.com/githubresname.png">
-<meta property="og:image" content="http://niumugaung.tk/path/to/image">
-<meta property="og:updated_time" content="2016-09-24T03:04:40.434Z">
+<meta property="og:description" content="ELK是什么?elastic官网elasticsearch权威指南先大致介绍ELK组件。ELK是Elasticsearch、Logstash、Kibana的简称，这三者是核心套件，但并非全部。后文的四种基本架构中将逐一介绍应用到的其它套件。现在
+部署架构框架部署步奏Elasticsearch安装及配置Logstash安装及配置Kibana安装及配置Topbeat解析配置程序监控Api">
+<meta property="og:updated_time" content="2016-09-09T06:36:10.729Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo搭建记">
-<meta name="twitter:description" content="总结网上的使用github+hexo搭建blog时的步奏和踩到的那些坑,力求全面阐述搭建过程和简单介绍hexo发布这篇博客的过程为后来者节省时间.
-
-预备准备一枚免费域名免费顶级域名我们可以去Freenom申请,申请之后进入管理页面如下图进入nameservers管理界面更改dns解析服务器,该解析服务器dnspod官方的,注册后可以进入域名解析界面查询
-设置一个域名解析访问dnspod的网站注">
-<meta name="twitter:image" content="http://ocux2a0n2.bkt.clouddn.com/address.png">
+<meta name="twitter:title" content="ELK监控搭建记">
+<meta name="twitter:description" content="ELK是什么?elastic官网elasticsearch权威指南先大致介绍ELK组件。ELK是Elasticsearch、Logstash、Kibana的简称，这三者是核心套件，但并非全部。后文的四种基本架构中将逐一介绍应用到的其它套件。现在
+部署架构框架部署步奏Elasticsearch安装及配置Logstash安装及配置Kibana安装及配置Topbeat解析配置程序监控Api">
 
 
 
@@ -131,9 +117,9 @@
 
 
 
-  <link rel="canonical" href="http://niumugaung.tk/2016/09/06/Hexo搭建记/"/>
+  <link rel="canonical" href="http://niumugaung.tk/2016/09/09/ELK监控搭建记/"/>
 
-  <title> Hexo搭建记 | Lio's Notebook </title>
+  <title> ELK监控搭建记 | Lio's Notebook </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -303,7 +289,7 @@
             
             
               
-                Hexo搭建记
+                ELK监控搭建记
               
             
           </h1>
@@ -315,8 +301,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-06T17:05:24+08:00" content="2016-09-06">
-              2016-09-06
+            <time itemprop="dateCreated" datetime="2016-09-09T09:55:19+08:00" content="2016-09-09">
+              2016-09-09
             </time>
           </span>
 
@@ -345,8 +331,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/09/06/Hexo搭建记/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/06/Hexo搭建记/" itemprop="commentsCount"></span>
+                <a href="/2016/09/09/ELK监控搭建记/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/09/ELK监控搭建记/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -369,52 +355,8 @@
       
 
       
-        <script src="/assets/js/DPlayer.min.js"> </script><p>总结网上的使用github+hexo搭建blog时的步奏和踩到的那些坑,力求全面阐述搭建过程和简单介绍hexo发布这篇博客的过程为后来者节省时间.</p>
-<hr>
-<h2 id="预备"><a href="#预备" class="headerlink" title="预备"></a>预备</h2><h3 id="准备一枚免费域名"><a href="#准备一枚免费域名" class="headerlink" title="准备一枚免费域名"></a>准备一枚免费域名</h3><p>免费顶级域名我们可以去<a href="http://www.freenom.com/zh/index.html?lang=zh" target="_blank" rel="external">Freenom</a>申请,申请之后进入管理页面如下图<br><img src="http://ocux2a0n2.bkt.clouddn.com/address.png" alt="image"><br>进入nameservers管理界面更改dns解析服务器,该解析服务器dnspod官方的,注册后可以进入域名解析界面查询<br><img src="http://ocux2a0n2.bkt.clouddn.com/2016-9-2%2013-12-06.png" alt="image"></p>
-<h3 id="设置一个域名解析"><a href="#设置一个域名解析" class="headerlink" title="设置一个域名解析"></a>设置一个域名解析</h3><p>访问<a href="https://www.dnspod.cn" target="_blank" rel="external">dnspod</a>的网站注册账号,我是用qq直接登录的.<br><img src="http://ocux2a0n2.bkt.clouddn.com/2016-9-2%2013-16-01.png" alt="image"></p>
-<h3 id="注册一个评论服务"><a href="#注册一个评论服务" class="headerlink" title="注册一个评论服务"></a>注册一个评论服务</h3><p>disqus发现国内不能用,所以改用<a href="http://duoshuo.com/" target="_blank" rel="external">多说</a>同理注册以备后用</p>
-<h3 id="开垦一块图床"><a href="#开垦一块图床" class="headerlink" title="开垦一块图床"></a>开垦一块图床</h3><p><a href="https://portal.qiniu.com/signin" target="_blank" rel="external">七牛云</a>直接使用github账号直接登录,进入储存空间,上传blog用到的图片或者下载资源.<br><img src="http://ocux2a0n2.bkt.clouddn.com/2016-9-2%2014-28-52.png" alt="image"></p>
-<h3 id="Github中创建工程"><a href="#Github中创建工程" class="headerlink" title="Github中创建工程"></a>Github中创建工程</h3><p>github账号是必须的了. 登陆后创建一个新的repository以github.io做结尾, 例如: xxxx.github.io,<br><img src="http://ocux2a0n2.bkt.clouddn.com/githubresname.png" alt="image"><br>修改Github Pages为你自己的域名,这个域名要提前申请的;<br><img src="http://ocux2a0n2.bkt.clouddn.com/githubresname.png" alt="image"></p>
-<blockquote>
-<p>为什么用github.io作为域名原因? </p>
-<ul>
-<li><ol>
-<li>CDN缓存更方便;</li>
-</ol>
-</li>
-<li><ol>
-<li>突破浏览器并发限制;</li>
-</ol>
-</li>
-<li><ol>
-<li>Cookieless, 节省带宽;</li>
-</ol>
-</li>
-<li><ol>
-<li>对于UGC的内容和主站隔离，防止不必要的安全问题;</li>
-</ol>
-</li>
-</ul>
-</blockquote>
-<h3 id="Hexo-安装"><a href="#Hexo-安装" class="headerlink" title="Hexo 安装"></a>Hexo 安装</h3><p>hexo是一款基于Node.js的静态博客框架。所以首先需要安装node.js,访问<a href="http://nodejs.cn/" target="_blank" rel="external">Node.js官网</a>下载window版安装包,一路next就行.<br><a href="https://hexo.io/" target="_blank" rel="external">Hexo官网</a> 安装完成之后进入cmd命令行,输入命令利用 npm 命令即可安装。<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g hexo</div></pre></td></tr></table></figure></p>
-<p>npm install hexo-cli -g</p>
-<blockquote class="pullquote [class]"><p>content</p>
-</blockquote>
-<img src="/path/to/image" class="[class names]" title="[width] [height] [title text [alt text]]">
-<p>ok, 一切贮备就绪</p>
-<hr>
-<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><h3 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h3><p>初始化blog文件夹<br>安装完成后，在你喜爱的文件夹下（如F:\gitblog），执行以下指令(在H:\hexo内点击鼠标右键，选择Git bash)，Hexo 即会自动在目标文件夹建立网站所需要的所有文件。<br>‘’’<br>hexo init<br>‘’’<br><figure class="highlight plain"><figcaption><span>Array.map</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo init</div></pre></td></tr></table></figure></p>
-<p>hexo现在支持更加简单的命令格式了，比如：<br>hexo g == hexo generate<br>hexo d == hexo deploy<br>hexo s == hexo server<br>hexo n == hexo new</p>
-<h3 id="配置github"><a href="#配置github" class="headerlink" title="配置github"></a>配置github</h3><h3 id="主题"><a href="#主题" class="headerlink" title="主题"></a>主题</h3><h3 id="撰写"><a href="#撰写" class="headerlink" title="撰写"></a>撰写</h3><h3 id="发布"><a href="#发布" class="headerlink" title="发布"></a>发布</h3><hr>
-<h2 id="坑"><a href="#坑" class="headerlink" title="坑"></a>坑</h2><h3 id="CNAME丢失问题"><a href="#CNAME丢失问题" class="headerlink" title="CNAME丢失问题"></a>CNAME丢失问题</h3><p>CNAME README都可以放在Source文件夹下，每次上传就不会消失了</p>
-<h3 id="hexo-server-端口号"><a href="#hexo-server-端口号" class="headerlink" title="hexo server 端口号"></a>hexo server 端口号</h3><p>再执行 hexo server xxxx开启本地静态html服务器，xxxx是端口号可随意指定，不指定使用默认端口也可以，默认端口号忘了。。。<br>访问localhost:xxxx 即可看到效果，注意只是本地哦，给你查看效果用的。<br>hexo server -p=8000</p>
-<p>hexo g<br>hexo d</p>
-<h3 id="视频嵌入测试"><a href="#视频嵌入测试" class="headerlink" title="视频嵌入测试"></a>视频嵌入测试</h3><div id="dplayer0" class="dplayer" style="margin-bottom: 20px;"></div><script>var dplayer0 = new DPlayer({"element":document.getElementById("dplayer0"),"autoplay":false,"theme":"#FADFA3","loop":true,"video":{"url":"http://devtest.qiniudn.com/若能绽放光芒.mp4","pic":"http://devtest.qiniudn.com/若能绽放光芒.png"},"danmaku":{"api":"http://dplayer.daoapp.io","id":"9E2E3368B56CDBB4","token":"tokendemo"}});</script>
-<p>问题1 hexo指令无法执行<br>可能是升级方法不对，导致hexo generate指令也无法执行，后来索性重装了git和node，重新安装hexo。generate和server指令都能执行了，但是出现了问题2。</p>
-<p>问题2 “Deployer not found: github”<br>更新文章执行hexo deploy时，出现以上提示，找来找去始终没发现原因。我备份了原来的source、themes文件夹和_config.yml主配置文件。后来终于在一些技术社区里找到了原因，需要将原来_config.yml配置中的deploy下的“type”字段中的“github”改为“git”。<br>再执行</p>
-<p>npm install hexo-deployer-git –save<br>重新deploy即可。<br>后来发现早有人在issue里提到了这个问题，而且也提及了解决方法，虽然不知为何开发者要修改这一参数。</p>
-
+        <script src="/assets/js/DPlayer.min.js"> </script><h2 id="ELK是什么"><a href="#ELK是什么" class="headerlink" title="ELK是什么?"></a>ELK是什么?</h2><p><a href="https://www.elastic.co/products/elasticsearch" target="_blank" rel="external">elastic官网</a><br><a href="http://es.xiaoleilu.com/" target="_blank" rel="external">elasticsearch权威指南</a><br>先大致介绍ELK组件。ELK是Elasticsearch、Logstash、Kibana的简称，这三者是核心套件，但并非全部。后文的四种基本架构中将逐一介绍应用到的其它套件。现在</p>
+<h2 id="部署架构框架"><a href="#部署架构框架" class="headerlink" title="部署架构框架"></a>部署架构框架</h2><h2 id="部署步奏"><a href="#部署步奏" class="headerlink" title="部署步奏"></a>部署步奏</h2><h3 id="Elasticsearch安装及配置"><a href="#Elasticsearch安装及配置" class="headerlink" title="Elasticsearch安装及配置"></a>Elasticsearch安装及配置</h3><h3 id="Logstash安装及配置"><a href="#Logstash安装及配置" class="headerlink" title="Logstash安装及配置"></a>Logstash安装及配置</h3><h3 id="Kibana安装及配置"><a href="#Kibana安装及配置" class="headerlink" title="Kibana安装及配置"></a>Kibana安装及配置</h3><h3 id="Topbeat解析配置"><a href="#Topbeat解析配置" class="headerlink" title="Topbeat解析配置"></a>Topbeat解析配置</h3><h2 id="程序监控Api"><a href="#程序监控Api" class="headerlink" title="程序监控Api"></a>程序监控Api</h2>
       
     </div>
 
@@ -441,7 +383,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Hexo/" rel="tag">#Hexo</a>
+            <a href="/tags/Elasticsearch/" rel="tag">#Elasticsearch</a>
+          
+            <a href="/tags/Logstash/" rel="tag">#Logstash</a>
+          
+            <a href="/tags/Kibana/" rel="tag">#Kibana</a>
           
         </div>
       
@@ -450,17 +396,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/08/15/知行合一/" rel="next" title="知行合一">
-                <i class="fa fa-chevron-left"></i> 知行合一
+              <a href="/2016/09/06/Hexo搭建记/" rel="next" title="Hexo搭建记">
+                <i class="fa fa-chevron-left"></i> Hexo搭建记
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/09/09/ELK监控搭建记/" rel="prev" title="ELK监控搭建记">
-                ELK监控搭建记 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -509,8 +451,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/09/06/Hexo搭建记/"
-           data-title="Hexo搭建记" data-url="http://niumugaung.tk/2016/09/06/Hexo搭建记/">
+      <div class="ds-thread" data-thread-key="2016/09/09/ELK监控搭建记/"
+           data-title="ELK监控搭建记" data-url="http://niumugaung.tk/2016/09/09/ELK监控搭建记/">
       </div>
     
   </div>
@@ -630,7 +572,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#预备"><span class="nav-number">1.</span> <span class="nav-text">预备</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#准备一枚免费域名"><span class="nav-number">1.1.</span> <span class="nav-text">准备一枚免费域名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置一个域名解析"><span class="nav-number">1.2.</span> <span class="nav-text">设置一个域名解析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注册一个评论服务"><span class="nav-number">1.3.</span> <span class="nav-text">注册一个评论服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开垦一块图床"><span class="nav-number">1.4.</span> <span class="nav-text">开垦一块图床</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Github中创建工程"><span class="nav-number">1.5.</span> <span class="nav-text">Github中创建工程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hexo-安装"><span class="nav-number">1.6.</span> <span class="nav-text">Hexo 安装</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用"><span class="nav-number">2.</span> <span class="nav-text">使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基础"><span class="nav-number">2.1.</span> <span class="nav-text">基础</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置github"><span class="nav-number">2.2.</span> <span class="nav-text">配置github</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#主题"><span class="nav-number">2.3.</span> <span class="nav-text">主题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#撰写"><span class="nav-number">2.4.</span> <span class="nav-text">撰写</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#发布"><span class="nav-number">2.5.</span> <span class="nav-text">发布</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#坑"><span class="nav-number">3.</span> <span class="nav-text">坑</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CNAME丢失问题"><span class="nav-number">3.1.</span> <span class="nav-text">CNAME丢失问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hexo-server-端口号"><span class="nav-number">3.2.</span> <span class="nav-text">hexo server 端口号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#视频嵌入测试"><span class="nav-number">3.3.</span> <span class="nav-text">视频嵌入测试</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#ELK是什么"><span class="nav-number">1.</span> <span class="nav-text">ELK是什么?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#部署架构框架"><span class="nav-number">2.</span> <span class="nav-text">部署架构框架</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#部署步奏"><span class="nav-number">3.</span> <span class="nav-text">部署步奏</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Elasticsearch安装及配置"><span class="nav-number">3.1.</span> <span class="nav-text">Elasticsearch安装及配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Logstash安装及配置"><span class="nav-number">3.2.</span> <span class="nav-text">Logstash安装及配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Kibana安装及配置"><span class="nav-number">3.3.</span> <span class="nav-text">Kibana安装及配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Topbeat解析配置"><span class="nav-number">3.4.</span> <span class="nav-text">Topbeat解析配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#程序监控Api"><span class="nav-number">4.</span> <span class="nav-text">程序监控Api</span></a></li></ol></div>
             
           </div>
         </section>
